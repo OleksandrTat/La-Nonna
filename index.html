@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Nonna · Pizzeria italiana · El Prat de Llobregat</title>
+<meta name="description" content="La Nonna — Pizzeria italiana auténtica en El Prat de Llobregat. Masa artesanal, horno de leña e ingredientes importados de Italia." />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- AOS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<style>
+:root{
+  --bg:#0a0a0a;
+  --bg-2:#101010;
+  --gold:#c9a84c;
+  --gold-soft:#e3c574;
+  --gold-grad:linear-gradient(135deg,#c9a84c 0%,#e3c574 50%,#a8862e 100%);
+  --cream:#f5f0e8;
+  --line:rgba(201,168,76,.22);
+  --muted:rgba(245,240,232,.7);
+  --it-green:#008C45;
+  --it-white:#F4F5F0;
+  --it-red:#CD212A;
+  --accent-red:#8b2635;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Raleway',sans-serif;
+  background:var(--bg);
+  color:var(--cream);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* SVG noise texture overlay */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.66 0 0 0 0 0.30 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.45'/></svg>");
+  opacity:.06;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:overlay;
+}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none;transition:color .25s ease}
+a:hover{color:var(--gold)}
+
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:.5px}
+.container{width:90%;max-width:1200px;margin:0 auto;position:relative;z-index:2}
+
+/* Section rhythm — alternating padding */
+.section{padding:130px 0;position:relative;z-index:2}
+.section.dense{padding:90px 0}
+
+/* Eyebrow / kicker */
+.eyebrow{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  text-align:center;
+  font-size:.78rem;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+  margin-bottom:14px;
+}
+.eyebrow::before,.eyebrow::after{
+  content:"";display:block;width:30px;height:1px;background:var(--gold);
+  opacity:.6;
+}
+.eyebrow.left{justify-content:flex-start}
+.eyebrow.left::after{display:none}
+
+.section-title{
+  font-size:clamp(1.9rem,3.2vw,2.4rem);
+  text-align:center;
+  margin-bottom:8px;
+  color:var(--cream);
+  font-weight:500;
+}
+.section-subtitle{
+  text-align:center;
+  color:var(--muted);
+  max-width:580px;
+  margin:0 auto 60px;
+  font-weight:300;
+  letter-spacing:.4px;
+  font-style:italic;
+  font-family:'Playfair Display',serif;
+}
+
+/* Ornamental divider */
+.divider{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin:18px auto 30px;
+}
+.divider .line{
+  width:50px;height:1px;background:var(--gold);
+}
+.divider .leaf{
+  color:var(--gold);font-size:.8rem;
+  transform:rotate(45deg);
+}
+.divider.tricolor{gap:6px}
+.divider.tricolor .line{width:38px}
+.divider.tricolor .dot{
+  width:7px;height:7px;border-radius:50%;
+}
+.divider.tricolor .dot.g{background:var(--it-green)}
+.divider.tricolor .dot.w{background:var(--it-white)}
+.divider.tricolor .dot.r{background:var(--it-red)}
+
+/* Gold gradient text */
+.gold-grad{
+  background:var(--gold-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+
+/* ---------- TRICOLOR TOP STRIP ---------- */
+.tricolor-strip{
+  position:fixed;top:0;left:0;width:100%;height:3px;
+  display:flex;z-index:1001;
+}
+.tricolor-strip span{flex:1}
+.tricolor-strip .g{background:var(--it-green)}
+.tricolor-strip .w{background:var(--it-white)}
+.tricolor-strip .r{background:var(--it-red)}
+
+/* ---------- NAVBAR ---------- */
+.navbar{
+  position:fixed;top:3px;left:0;width:100%;
+  padding:18px 0;z-index:1000;
+  transition:all .35s ease;
+  background:transparent;
+}
+.navbar.scrolled{
+  background:rgba(10,10,10,.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,168,76,.15);
+  padding:12px 0;
+}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:42px;width:auto}
+.nav-logo span{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;color:var(--cream);letter-spacing:1px;
+}
+.nav-links{display:flex;gap:34px;list-style:none}
+.nav-links a{
+  color:var(--cream);
+  font-size:.85rem;letter-spacing:2px;
+  text-transform:uppercase;font-weight:500;
+  position:relative;padding:6px 0;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width .3s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--gold)}
+
+.nav-toggle{
+  display:none;background:none;border:0;color:var(--cream);
+  font-size:1.5rem;cursor:pointer;z-index:1002;position:relative;
+}
+
+/* Overlay backdrop for mobile menu */
+.nav-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;visibility:hidden;transition:all .35s ease;
+  z-index:999;
+}
+.nav-overlay.show{opacity:1;visibility:visible}
+body.menu-open{overflow:hidden}
+
+@media (max-width:860px){
+  .nav-toggle{display:block}
+  .nav-links{
+    position:fixed;top:0;right:-100%;
+    height:100vh;width:75%;max-width:340px;
+    background:rgba(10,10,10,.98);
+    backdrop-filter:blur(14px);
+    flex-direction:column;justify-content:center;align-items:center;
+    gap:30px;transition:right .4s ease;
+    border-left:1px solid var(--line);
+    z-index:1001;
+  }
+  .nav-links.open{right:0}
+  .nav-links a{font-size:1.05rem}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;color:var(--cream);overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  /* REEMPLAZAR CON FOTO REAL DEL RESTAURANTE */
+  transform:scale(1.05);
+  animation:slowZoom 20s ease-in-out infinite alternate;
+}
+@keyframes slowZoom{from{transform:scale(1.05)}to{transform:scale(1.15)}}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at center,rgba(0,0,0,.4),rgba(0,0,0,.75)),
+    linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.6) 100%);
+  z-index:1;
+}
+.hero-content{position:relative;z-index:2;padding:0 20px;max-width:900px}
+.hero-logo{
+  height:clamp(260px,32vw,400px);
+  width:auto;margin:0 auto 30px;
+  filter:drop-shadow(0 12px 40px rgba(0,0,0,.6));
+}
+.hero-sub-line{
+  display:flex;align-items:center;justify-content:center;gap:22px;
+  margin-bottom:48px;
+}
+.hero-sub-line .l{
+  flex:0 1 100px;height:1px;background:rgba(245,240,232,.45);
+}
+.hero p.subtitle{
+  font-size:clamp(.85rem,1.4vw,1.05rem);
+  letter-spacing:5px;text-transform:uppercase;
+  color:var(--cream);opacity:.95;font-weight:300;
+  white-space:nowrap;
+}
+.hero p.subtitle .accent{color:var(--gold);font-weight:400}
+.hero-buttons{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 32px;font-size:.85rem;
+  letter-spacing:2.5px;text-transform:uppercase;
+  font-family:'Raleway',sans-serif;font-weight:500;
+  cursor:pointer;transition:all .3s ease;
+  border:1px solid var(--gold);color:var(--gold);
+  background:transparent;
+  position:relative;
+}
+.btn:hover{
+  background:var(--gold);color:var(--bg);
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(201,168,76,.22);
+}
+.btn-solid{background:var(--gold);color:var(--bg)}
+.btn-solid:hover{
+  background:transparent;color:var(--gold);
+  box-shadow:0 12px 28px rgba(201,168,76,.18);
+}
+
+/* Minimal scroll indicator */
+.scroll-line{
+  position:absolute;bottom:30px;left:50%;
+  transform:translateX(-50%);z-index:2;
+  width:1px;height:60px;background:rgba(245,240,232,.2);
+  overflow:hidden;
+}
+.scroll-line::before{
+  content:"";position:absolute;top:-30px;left:0;
+  width:100%;height:30px;background:var(--gold);
+  animation:scrollDrop 2.4s ease-in-out infinite;
+}
+@keyframes scrollDrop{
+  0%{top:-30px}
+  100%{top:60px}
+}
+
+/* ---------- ABOUT ---------- */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:70px;align-items:center;
+}
+.about-text h2{font-size:clamp(2rem,3.2vw,2.6rem);margin-bottom:10px;font-weight:500}
+.about-text p.lead{
+  font-size:1.05rem;color:var(--muted);
+  font-weight:300;line-height:1.85;margin:20px 0 25px;
+}
+.about-quote{
+  font-family:'Playfair Display',serif;
+  font-style:italic;color:var(--gold);
+  font-size:1.05rem;
+  padding:18px 0 22px;
+  border-top:1px solid var(--line);
+  margin-top:30px;
+  letter-spacing:.5px;
+}
+.about-quote small{
+  display:block;font-size:.7rem;letter-spacing:2.5px;
+  color:var(--muted);text-transform:uppercase;
+  margin-top:8px;font-style:normal;font-family:'Raleway',sans-serif;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:9px 20px;border:1px solid var(--gold);
+  border-radius:40px;color:var(--gold);
+  font-size:.78rem;letter-spacing:2.5px;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.about-features{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:25px;margin-top:35px;
+}
+.feature{text-align:center;padding:20px 10px}
+.feature i{
+  font-size:1.9rem;color:var(--gold);
+  margin-bottom:14px;display:block;
+}
+.feature span{
+  display:block;font-size:.78rem;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--cream);font-weight:500;
+}
+.about-image{position:relative}
+.about-image .img-wrap{
+  position:relative;
+  overflow:hidden;
+}
+.about-image img{
+  width:100%;height:560px;object-fit:cover;
+  filter:brightness(.92);
+}
+.about-image .img-wrap::after{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 80px 20px rgba(10,10,10,.6);
+  pointer-events:none;
+}
+.about-image::before{
+  content:"";position:absolute;inset:-18px;
+  border:1px solid var(--gold);z-index:-1;
+  transform:translate(18px,18px);
+}
+
+@media (max-width:860px){
+  .about-grid{grid-template-columns:1fr;gap:50px}
+  .about-image img{height:380px}
+  .about-features{gap:10px}
+}
+
+/* ---------- FEATURED PIZZAS ---------- */
+.featured{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;margin-bottom:80px;
+}
+.featured-card{
+  position:relative;
+  border:1px solid var(--line);
+  overflow:hidden;
+  transition:all .4s ease;
+  background:rgba(255,255,255,.02);
+}
+.featured-card:hover{
+  border-color:var(--gold);
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.4);
+}
+.featured-img{
+  position:relative;width:100%;height:180px;overflow:hidden;
+}
+.featured-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+  filter:brightness(.9);
+}
+.featured-card:hover .featured-img img{transform:scale(1.08)}
+.featured-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(10,10,10,.7));
+}
+.featured-tag{
+  position:absolute;top:14px;left:14px;
+  background:var(--it-red);color:#fff;
+  padding:5px 12px;font-size:.65rem;
+  letter-spacing:2px;text-transform:uppercase;
+  font-weight:600;z-index:2;
+}
+.featured-tag.fav{background:var(--accent-red)}
+.featured-body{padding:22px 20px}
+.featured-body h4{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:1.3rem;
+  margin-bottom:8px;font-weight:500;
+  color:var(--cream);
+}
+.featured-body p{
+  font-size:.82rem;color:var(--muted);
+  line-height:1.55;margin-bottom:16px;
+  font-weight:300;
+  min-height:42px;
+}
+.featured-price{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;font-weight:600;
+  background:var(--gold-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-variant-numeric:tabular-nums;
+}
+
+@media (max-width:980px){
+  .featured{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:500px){
+  .featured{grid-template-columns:1fr}
+}
+
+/* ---------- MENU ---------- */
+.menu-filters{
+  display:flex;justify-content:center;gap:12px;
+  flex-wrap:wrap;margin-bottom:50px;
+}
+.filter-btn{
+  padding:10px 24px;border:1px solid var(--line);
+  background:transparent;color:var(--cream);
+  font-family:'Raleway',sans-serif;font-size:.78rem;
+  letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:all .3s ease;
+}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
+.filter-btn.active{
+  background:var(--gold);color:var(--bg);
+  border-color:var(--gold);
+}
+
+.menu-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:6px 50px;
+}
+.menu-item{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 0 16px;
+  position:relative;cursor:default;
+  border-bottom:1px dotted rgba(201,168,76,.18);
+  overflow:hidden;
+}
+.menu-item::after{
+  content:"";position:absolute;bottom:-1px;left:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width .5s ease;
+}
+.menu-item:hover::after{width:100%}
+.menu-name{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:1.05rem;font-weight:500;color:var(--cream);
+  flex:1;padding-right:14px;
+  letter-spacing:.3px;
+}
+.menu-price{
+  color:var(--gold);font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:600;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  background:var(--gold-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.menu-section-title{
+  grid-column:1/-1;font-size:.78rem;
+  color:var(--gold);letter-spacing:5px;
+  text-transform:uppercase;
+  margin:36px 0 14px;text-align:center;
+  font-family:'Raleway',sans-serif;font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+}
+.menu-section-title::before,
+.menu-section-title::after{
+  content:"";width:30px;height:1px;background:var(--gold);opacity:.6;
+}
+.menu-section-title:first-child{margin-top:0}
+
+.menu-note{
+  text-align:center;color:var(--muted);
+  font-size:.75rem;letter-spacing:2.5px;
+  margin-top:40px;text-transform:uppercase;
+  font-style:italic;font-family:'Playfair Display',serif;
+}
+
+@media (max-width:980px){
+  .menu-grid{grid-template-columns:repeat(2,1fr);gap:6px 40px}
+}
+@media (max-width:600px){
+  .menu-grid{grid-template-columns:1fr;gap:0}
+}
+
+/* ---------- GALLERY ---------- */
+.gallery{background:var(--bg-2)}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:200px;
+  gap:12px;
+}
+.gallery-item{
+  position:relative;overflow:hidden;
+  cursor:zoom-in;
+}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease, filter .4s ease;
+  filter:brightness(.82);
+}
+.gallery-item::after{
+  content:"\f00e";
+  font-family:"Font Awesome 6 Free";font-weight:900;
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.7);
+  color:var(--gold);font-size:1.4rem;
+  opacity:0;transition:all .4s ease;
+  z-index:2;
+}
+.gallery-item::before{
+  content:"";position:absolute;inset:0;
+  background:rgba(10,10,10,.4);
+  opacity:0;transition:opacity .4s ease;
+  z-index:1;
+}
+.gallery-item:hover img{transform:scale(1.08);filter:brightness(1)}
+.gallery-item:hover::before{opacity:1}
+.gallery-item:hover::after{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item.wide{grid-column:span 2}
+@media (max-width:860px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .gallery-item.wide{grid-column:span 2}
+  .gallery-item.tall{grid-row:span 1}
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{
+  position:fixed;inset:0;background:rgba(5,5,5,.95);
+  z-index:2000;display:none;
+  align-items:center;justify-content:center;
+  padding:30px;
+}
+.lightbox.open{display:flex}
+.lightbox img{
+  max-width:90%;max-height:90vh;
+  border:1px solid var(--gold);
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+.lightbox-close,.lightbox-prev,.lightbox-next{
+  position:absolute;background:transparent;border:0;
+  color:var(--gold);font-size:1.6rem;cursor:pointer;
+  width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease;
+}
+.lightbox-close{top:24px;right:24px;font-size:1.8rem}
+.lightbox-prev{left:24px;top:50%;transform:translateY(-50%)}
+.lightbox-next{right:24px;top:50%;transform:translateY(-50%)}
+.lightbox-close:hover,.lightbox-prev:hover,.lightbox-next:hover{
+  color:var(--cream);transform:scale(1.15);
+}
+.lightbox-prev:hover{transform:translateY(-50%) scale(1.15)}
+.lightbox-next:hover{transform:translateY(-50%) scale(1.15)}
+
+/* ---------- REVIEWS ---------- */
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+  margin-top:20px;
+}
+.review-card{
+  padding:36px 30px;
+  border:1px solid var(--line);
+  background:rgba(201,168,76,.03);
+  position:relative;
+  transition:all .4s ease;
+}
+.review-card:hover{
+  border-color:var(--gold);
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.4);
+}
+.review-card .quote-icon{
+  position:absolute;top:-16px;left:24px;
+  background:var(--bg);padding:0 10px;
+  color:var(--gold);font-size:1.4rem;
+}
+.review-stars{
+  color:var(--gold);font-size:.9rem;
+  margin-bottom:18px;letter-spacing:3px;
+}
+.review-text{
+  color:var(--cream);font-weight:300;
+  line-height:1.75;font-size:1rem;
+  margin-bottom:22px;font-style:italic;
+  font-family:'Playfair Display',serif;
+}
+.review-author{
+  display:flex;align-items:center;gap:14px;
+  border-top:1px solid var(--line);padding-top:18px;
+}
+.review-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--gold-grad);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:1.1rem;
+}
+.review-info strong{
+  display:block;color:var(--cream);
+  font-size:.95rem;letter-spacing:.5px;
+  font-weight:600;
+}
+.review-info span{
+  color:var(--muted);font-size:.72rem;
+  letter-spacing:1.5px;text-transform:uppercase;
+}
+.reviews-cta{
+  text-align:center;margin-top:60px;
+}
+.google-rating-big{
+  display:inline-flex;align-items:center;gap:22px;
+  padding:18px 30px;border:1px solid var(--gold);
+  margin-bottom:24px;
+}
+.google-rating-big .score{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;font-weight:700;line-height:1;
+  background:var(--gold-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-variant-numeric:tabular-nums;
+}
+.google-rating-big .info{text-align:left}
+.google-rating-big .info .stars{color:var(--gold);font-size:.85rem;letter-spacing:3px}
+.google-rating-big .info small{color:var(--muted);font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase}
+
+@media (max-width:860px){
+  .reviews-grid{grid-template-columns:1fr}
+}
+
+/* ---------- ORDER ---------- */
+.order{background:var(--bg-2)}
+.order-cards{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+.order-card{
+  padding:50px 40px;text-align:center;
+  border:1px solid var(--gold);
+  background:rgba(201,168,76,.03);
+  transition:all .4s ease;
+  position:relative;overflow:hidden;
+}
+.order-card::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,168,76,.07),transparent);
+  opacity:0;transition:opacity .4s ease;
+}
+.order-card:hover::before{opacity:1}
+.order-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.order-card i.main-icon{
+  font-size:2.4rem;color:var(--gold);
+  margin-bottom:22px;display:block;
+}
+.order-card h3{
+  font-size:1.6rem;margin-bottom:14px;color:var(--cream);
+  font-weight:500;
+}
+.order-card p{
+  color:var(--muted);margin-bottom:28px;
+  font-weight:300;line-height:1.7;font-style:italic;
+  font-family:'Playfair Display',serif;
+}
+.delivery-buttons{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+}
+.btn-brand{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 22px;cursor:pointer;
+  font-family:'Raleway',sans-serif;
+  letter-spacing:.3px;text-transform:none;
+  font-size:.95rem;font-weight:700;
+  border:1px solid transparent;
+  transition:all .3s ease;
+}
+.btn-brand svg{width:20px;height:20px;flex-shrink:0}
+.btn-brand:hover{transform:translateY(-2px)}
+
+.btn-glovo{background:#FFC244;color:#0F1419;border-color:#FFC244}
+.btn-glovo:hover{box-shadow:0 12px 28px rgba(255,194,68,.35)}
+.btn-glovo .brand-mark{font-weight:800;font-size:1.05rem;letter-spacing:-.5px}
+.btn-glovo .brand-dot{color:#00A082}
+
+.btn-uber{background:#06C167;color:#0F1419;border-color:#06C167}
+.btn-uber:hover{box-shadow:0 12px 28px rgba(6,193,103,.35)}
+.btn-uber .brand-mark{font-weight:800;letter-spacing:-.3px}
+.btn-uber .uber-eats{font-weight:900}
+
+/* Directions button */
+.btn-directions{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 24px;margin-top:16px;
+  background:transparent;color:var(--gold);
+  border:1px solid var(--gold);
+  font-size:.82rem;letter-spacing:2px;text-transform:uppercase;
+  font-weight:500;transition:all .3s ease;
+}
+.btn-directions:hover{
+  background:var(--gold);color:var(--bg);
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(201,168,76,.22);
+}
+.location-block{text-align:center;margin-top:22px}
+
+@media (max-width:860px){
+  .order-cards{grid-template-columns:1fr}
+  .order-card{padding:40px 25px}
+}
+
+/* ---------- HOURS & MAP ---------- */
+.hours-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:start;
+}
+.hours-table{width:100%;border-collapse:collapse}
+.hours-table tr{border-bottom:1px solid var(--line)}
+.hours-table td{
+  padding:18px 0;font-size:1rem;
+  letter-spacing:1px;
+  font-variant-numeric:tabular-nums;
+}
+.hours-table td:first-child{
+  text-transform:uppercase;color:var(--cream);
+  font-weight:500;letter-spacing:2.5px;font-size:.82rem;
+}
+.hours-table td:last-child{
+  text-align:right;color:var(--muted);
+  font-family:'Playfair Display',serif;
+}
+.hours-table tr.today td{color:var(--gold)}
+.hours-table tr.today td:last-child{color:var(--gold)}
+.hours-table tr.today{background:rgba(201,168,76,.04)}
+.hours-table tr.today td{padding-left:14px;padding-right:14px}
+
+.map-wrap{
+  width:100%;height:420px;
+  border:1px solid var(--line);
+  overflow:hidden;position:relative;
+}
+.map-wrap iframe{width:100%;height:100%;border:0}
+.location-line{
+  margin-top:22px;text-align:center;
+  color:var(--muted);font-size:.9rem;
+  letter-spacing:1px;
+}
+.location-line i{color:var(--gold);margin-right:8px}
+
+@media (max-width:860px){
+  .hours-grid{grid-template-columns:1fr;gap:40px}
+  .map-wrap{height:340px}
+}
+
+/* ---------- OPEN STATUS ---------- */
+.open-status{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-left:10px;padding:4px 12px;
+  border-radius:30px;font-size:.65rem;
+  letter-spacing:1.4px;text-transform:uppercase;
+  font-weight:600;vertical-align:middle;
+  white-space:nowrap;
+}
+.hours-table tr.today td:first-child{
+  display:flex;align-items:center;flex-wrap:wrap;gap:6px;
+}
+@media (max-width:600px){
+  .open-status{margin-left:0;font-size:.6rem;letter-spacing:1px}
+}
+.open-status.open{
+  background:rgba(6,193,103,.12);color:#06C167;
+  border:1px solid rgba(6,193,103,.4);
+}
+.open-status.closed{
+  background:rgba(255,80,80,.1);color:#ff7070;
+  border:1px solid rgba(255,80,80,.3);
+}
+.open-status .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:currentColor;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.4}
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  padding:80px 0 30px;text-align:center;
+  border-top:1px solid var(--line);
+  background:#070707;
+  position:relative;z-index:2;
+}
+.footer-quote{
+  font-family:'Playfair Display',serif;
+  font-style:italic;color:var(--gold);
+  font-size:1.15rem;margin-bottom:40px;
+  letter-spacing:.5px;
+}
+.footer-logo{height:54px;width:auto;margin:0 auto 26px}
+.footer-info{
+  display:flex;justify-content:center;align-items:center;
+  gap:30px;flex-wrap:wrap;
+  padding:24px 0;margin:0 auto 30px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  max-width:900px;
+}
+.footer-info-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:.82rem;color:var(--muted);
+  letter-spacing:1.2px;
+}
+.footer-info-item i{color:var(--gold)}
+.footer-info-item a:hover{color:var(--gold)}
+.footer p.copy{color:var(--muted);font-size:.75rem;letter-spacing:1.5px;margin-top:24px}
+.socials{
+  display:flex;justify-content:center;gap:18px;
+  margin-top:8px;
+}
+.socials a{
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--gold);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;transition:all .3s ease;
+}
+.socials a:hover{background:var(--gold);color:var(--bg);transform:translateY(-3px)}
+.footer-tricolor{
+  display:flex;justify-content:center;gap:0;
+  margin-top:30px;
+}
+.footer-tricolor span{
+  width:34px;height:2px;
+}
+.footer-tricolor .g{background:var(--it-green)}
+.footer-tricolor .w{background:var(--it-white)}
+.footer-tricolor .r{background:var(--it-red)}
+
+@media (max-width:600px){
+  .footer-info{gap:18px;flex-direction:column}
+}
+
+/* selection */
+::selection{background:var(--gold);color:var(--bg)}
+
+/* scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- Tricolor top strip -->
+<div class="tricolor-strip" aria-hidden="true">
+  <span class="g"></span>
+  <span class="w"></span>
+  <span class="r"></span>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-wrap">
+    <a href="#hero" class="nav-logo">
+      <img src="logo.png" alt="La Nonna Pizzeria italiana" />
+      <span>La Nonna</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#gallery">Galería</a></li>
+      <li><a href="#reviews">Reseñas</a></li>
+      <li><a href="#order">Pedir</a></li>
+      <li><a href="#hours">Horarios</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <!-- REEMPLAZAR CON FOTO REAL DEL RESTAURANTE -->
+  <div class="hero-content">
+    <img src="logo.png" alt="La Nonna · Pizzeria italiana" class="hero-logo" data-aos="zoom-in" />
+    <div class="hero-sub-line" data-aos="fade-up" data-aos-delay="200">
+      <span class="l"></span>
+      <p class="subtitle">El Prat de Llobregat <span class="accent">·</span> Barcelona</p>
+      <span class="l"></span>
+    </div>
+    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="350">
+      <a href="#menu" class="btn">Ver menú</a>
+      <a href="#order" class="btn btn-solid">Contactar</a>
+    </div>
+  </div>
+  <a href="#about" class="scroll-line" aria-label="Bajar"></a>
+</header>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text" data-aos="fade-right">
+        <div class="badge">
+          <i class="fa-solid fa-star"></i> 4,4 — Google Maps
+        </div>
+        <p class="eyebrow left">— Tradizione —</p>
+        <h2>Tradición italiana,<br/>hecha a mano</h2>
+        <div class="divider tricolor" style="justify-content:flex-start;margin-left:0">
+          <span class="line" style="background:var(--gold);width:30px"></span>
+          <span class="dot g"></span>
+          <span class="dot w"></span>
+          <span class="dot r"></span>
+        </div>
+        <p class="lead">
+          En La Nonna, cada pizza es un homenaje a la tradición italiana.
+          Masa elaborada a mano, ingredientes importados directamente de Italia
+          y el calor de un horno de leña. Desde El Prat de Llobregat,
+          te traemos el auténtico sabor de la nonna.
+        </p>
+        <div class="about-features">
+          <div class="feature">
+            <i class="fa-solid fa-fire"></i>
+            <span>Horno de leña</span>
+          </div>
+          <div class="feature">
+            <i class="fa-solid fa-leaf"></i>
+            <span>Ingredientes italianos</span>
+          </div>
+          <div class="feature">
+            <i class="fa-solid fa-users"></i>
+            <span>Ambiente familiar</span>
+          </div>
+        </div>
+        <p class="about-quote">
+          "Mangia bene, ridi spesso, ama molto."
+          <small>— Proverbio italiano</small>
+        </p>
+      </div>
+      <div class="about-image" data-aos="fade-left">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Interior de La Nonna" loading="lazy" />
+          <!-- REEMPLAZAR CON FOTO REAL DEL LOCAL -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section dense" id="menu">
+  <div class="container">
+    <p class="eyebrow" data-aos="fade-up">— Il Menu —</p>
+    <h2 class="section-title" data-aos="fade-up">Nuestra carta</h2>
+    <div class="divider tricolor" data-aos="fade-up">
+      <span class="line"></span>
+      <span class="dot g"></span>
+      <span class="dot w"></span>
+      <span class="dot r"></span>
+      <span class="line"></span>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Recetas que cruzan generaciones, servidas con el corazón de la nonna.
+    </p>
+
+    <!-- FEATURED -->
+    <p class="eyebrow" data-aos="fade-up" style="margin-bottom:30px">— Le Favorite della Nonna —</p>
+
+    <div class="featured" data-aos="fade-up">
+      <!-- REEMPLAZAR CON FOTOS REALES DE LAS PIZZAS -->
+      <div class="featured-card">
+        <span class="featured-tag">Más pedida</span>
+        <div class="featured-img">
+          <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=600&q=80" alt="Pizza Margherita" loading="lazy" />
+        </div>
+        <div class="featured-body">
+          <h4>Margherita</h4>
+          <p>Tomate San Marzano, mozzarella fior di latte, albahaca fresca y aceite de oliva.</p>
+          <span class="featured-price">10,50€</span>
+        </div>
+      </div>
+      <div class="featured-card">
+        <span class="featured-tag fav">Favorita</span>
+        <div class="featured-img">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Pizza La Nonna" loading="lazy" />
+        </div>
+        <div class="featured-body">
+          <h4>La Nonna</h4>
+          <p>Nuestra firma de la casa. Mozzarella, prosciutto, rúcula y parmesano en escamas.</p>
+          <span class="featured-price">12,50€</span>
+        </div>
+      </div>
+      <div class="featured-card">
+        <span class="featured-tag fav">Favorita</span>
+        <div class="featured-img">
+          <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=600&q=80" alt="Pizza Carbonara" loading="lazy" />
+        </div>
+        <div class="featured-body">
+          <h4>Carbonara</h4>
+          <p>Crema, guanciale, huevo, pecorino romano y pimienta negra recién molida.</p>
+          <span class="featured-price">14,50€</span>
+        </div>
+      </div>
+      <div class="featured-card">
+        <span class="featured-tag fav">Favorita</span>
+        <div class="featured-img">
+          <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?auto=format&fit=crop&w=600&q=80" alt="Pizza Corleone" loading="lazy" />
+        </div>
+        <div class="featured-body">
+          <h4>Corleone</h4>
+          <p>Mozzarella, salami picante, cebolla caramelizada y aceitunas Kalamata.</p>
+          <span class="featured-price">13,50€</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-filters" data-aos="fade-up">
+      <button class="filter-btn active" data-cat="all">Todo</button>
+      <button class="filter-btn" data-cat="pizzas">Pizzas</button>
+      <button class="filter-btn" data-cat="calzone">Calzone</button>
+      <button class="filter-btn" data-cat="entrantes">Entrantes</button>
+      <button class="filter-btn" data-cat="especialidades">Especialidades</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid" data-aos="fade-up"></div>
+
+    <p class="menu-note">— Todas nuestras pizzas son de 33 cm —</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <p class="eyebrow" data-aos="fade-up">— La Galleria —</p>
+    <h2 class="section-title" data-aos="fade-up">Galería</h2>
+    <div class="divider tricolor" data-aos="fade-up">
+      <span class="line"></span>
+      <span class="dot g"></span>
+      <span class="dot w"></span>
+      <span class="dot r"></span>
+      <span class="line"></span>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Un vistazo a nuestro local y a las pizzas que salen del horno cada día.
+    </p>
+
+    <div class="gallery-grid" data-aos="fade-up">
+      <!-- REEMPLAZAR CON FOTOS REALES DEL LOCAL Y LAS PIZZAS -->
+      <div class="gallery-item tall" data-img="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Pizza Margherita" loading="lazy" />
+      </div>
+      <div class="gallery-item" data-img="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="Pizza al horno de leña" loading="lazy" />
+      </div>
+      <div class="gallery-item wide" data-img="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt="Interior del restaurante" loading="lazy" />
+      </div>
+      <div class="gallery-item" data-img="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=800&q=80" alt="Pizzaiolo trabajando la masa" loading="lazy" />
+      </div>
+      <div class="gallery-item" data-img="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?auto=format&fit=crop&w=800&q=80" alt="Pizza con burrata" loading="lazy" />
+      </div>
+      <div class="gallery-item" data-img="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80" alt="Pizza napolitana" loading="lazy" />
+      </div>
+      <div class="gallery-item tall" data-img="https://images.unsplash.com/photo-1542528180-a1208c5169a5?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1542528180-a1208c5169a5?auto=format&fit=crop&w=800&q=80" alt="Horno de leña" loading="lazy" />
+      </div>
+      <div class="gallery-item wide" data-img="https://images.unsplash.com/photo-1542367592-8849eb950fd8?auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1542367592-8849eb950fd8?auto=format&fit=crop&w=1200&q=80" alt="Mesa servida" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lightbox-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="lightbox-next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="container">
+    <p class="eyebrow" data-aos="fade-up">— Le Recensioni —</p>
+    <h2 class="section-title" data-aos="fade-up">Lo que dicen nuestros clientes</h2>
+    <div class="divider tricolor" data-aos="fade-up">
+      <span class="line"></span>
+      <span class="dot g"></span>
+      <span class="dot w"></span>
+      <span class="dot r"></span>
+      <span class="line"></span>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Reseñas reales de quienes ya han pasado por nuestra mesa.
+    </p>
+
+    <!-- REEMPLAZAR CON RESEÑAS REALES DE GOOGLE MAPS -->
+    <div class="reviews-grid">
+      <div class="review-card" data-aos="fade-up">
+        <span class="quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-text">
+          La mejor pizza napolitana que he probado en el Prat. La masa es perfecta, fina y con el borde justo. Volveremos seguro.
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div class="review-info">
+            <strong>María G.</strong>
+            <span>Hace 2 semanas · Google</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+        <span class="quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-text">
+          Ambiente familiar y trato cercano. La Carbonara es una bomba y el tiramisú casero está a la altura. Italianos de verdad.
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div class="review-info">
+            <strong>Andrea R.</strong>
+            <span>Hace 1 mes · Google</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+        <span class="quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+        </div>
+        <p class="review-text">
+          Pedimos por Glovo y llegó caliente, crujiente y en muy buen estado. Los ingredientes se notan de calidad. Repetiremos.
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div class="review-info">
+            <strong>Jordi P.</strong>
+            <span>Hace 3 semanas · Google</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-cta" data-aos="fade-up">
+      <div class="google-rating-big">
+        <div class="score">4,4</div>
+        <div class="info">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <small>Valoración en Google Maps</small>
+        </div>
+      </div>
+      <br/>
+      <!-- REEMPLAZAR CON URL REAL DE LA FICHA DE GOOGLE MAPS -->
+      <a href="https://www.google.com/maps/search/?api=1&query=La+Nonna+Pizzeria+El+Prat+de+Llobregat" target="_blank" rel="noopener" class="btn">
+        <i class="fa-brands fa-google"></i> Ver todas las reseñas
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section class="section order" id="order">
+  <div class="container">
+    <p class="eyebrow" data-aos="fade-up">— Come ordinare —</p>
+    <h2 class="section-title" data-aos="fade-up">¿Cómo pedir?</h2>
+    <div class="divider tricolor" data-aos="fade-up">
+      <span class="line"></span>
+      <span class="dot g"></span>
+      <span class="dot w"></span>
+      <span class="dot r"></span>
+      <span class="line"></span>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Reserva tu mesa o pide a domicilio, como prefieras.
+    </p>
+
+    <div class="order-cards">
+      <div class="order-card" data-aos="fade-up">
+        <i class="fa-solid fa-phone main-icon"></i>
+        <h3>Llámanos</h3>
+        <p>Haz tu pedido o reserva tu mesa directamente.</p>
+        <a href="tel:931450308" class="btn btn-solid">
+          <i class="fa-solid fa-phone-volume"></i> 931 450 308
+        </a>
+      </div>
+      <div class="order-card" data-aos="fade-up" data-aos-delay="150">
+        <i class="fa-solid fa-motorcycle main-icon"></i>
+        <h3>A domicilio</h3>
+        <p>Pide desde casa con tu app favorita.</p>
+        <div class="delivery-buttons">
+          <!-- REEMPLAZAR CON LINKS REALES DE GLOVO Y UBER EATS -->
+          <a href="#" target="_blank" rel="noopener" class="btn-brand btn-glovo" aria-label="Pedir por Glovo">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path fill="#00A082" d="M16 3C9.4 3 4 8.4 4 15c0 4.6 2.6 8.6 6.5 10.5L16 29l5.5-3.5C25.4 23.6 28 19.6 28 15c0-6.6-5.4-12-12-12zm0 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+              <circle cx="16" cy="15" r="2.5" fill="#FFC244"/>
+            </svg>
+            <span class="brand-mark">Glovo<span class="brand-dot">.</span></span>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="btn-brand btn-uber" aria-label="Pedir por Uber Eats">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="32" height="32" rx="4" fill="#0F1419"/>
+              <path fill="#06C167" d="M7 11h8v2.5H9.5v1.7H14V17.5H9.5v1.8H15V22H7V11zm10.2 6.3c0-3.1 2.3-5.6 5.3-5.6 2.9 0 5 2.2 5 5.3 0 .3 0 .6-.1.9h-7.5c.3 1.4 1.4 2.2 2.8 2.2 1 0 1.8-.4 2.3-1l1.9 1.3c-.9 1.3-2.4 2.1-4.3 2.1-3.2 0-5.4-2.2-5.4-5.2zm8-1.3c-.2-1.2-1.1-2-2.5-2-1.3 0-2.3.8-2.6 2h5.1z"/>
+            </svg>
+            <span class="brand-mark"><span class="uber-eats">Uber</span> Eats</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & MAP -->
+<section class="section" id="hours">
+  <div class="container">
+    <p class="eyebrow" data-aos="fade-up">— Dove siamo —</p>
+    <h2 class="section-title" data-aos="fade-up">Horarios y localización</h2>
+    <div class="divider tricolor" data-aos="fade-up">
+      <span class="line"></span>
+      <span class="dot g"></span>
+      <span class="dot w"></span>
+      <span class="dot r"></span>
+      <span class="line"></span>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Te esperamos en el corazón de El Prat de Llobregat.
+    </p>
+
+    <div class="hours-grid" id="contact">
+      <div data-aos="fade-right">
+        <table class="hours-table" id="hoursTable">
+          <tr data-day="1"><td>Lunes</td><td>Cerrado</td></tr>
+          <tr data-day="2"><td>Martes</td><td>19:30 – 23:00</td></tr>
+          <tr data-day="3"><td>Miércoles</td><td>19:30 – 23:00</td></tr>
+          <tr data-day="4"><td>Jueves</td><td>19:30 – 23:00</td></tr>
+          <tr data-day="5"><td>Viernes</td><td>12:00 – 15:30 · 19:30 – 23:00</td></tr>
+          <tr data-day="6"><td>Sábado</td><td>12:00 – 15:30 · 19:30 – 23:00</td></tr>
+          <tr data-day="0"><td>Domingo</td><td>12:00 – 15:30 · 19:30 – 23:00</td></tr>
+        </table>
+      </div>
+      <div data-aos="fade-left">
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps?q=Carrer%20de%20Ferran%20Puig%2016%2C%2008820%20El%20Prat%20de%20Llobregat%2C%20Barcelona&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación La Nonna"></iframe>
+        </div>
+        <div class="location-block">
+          <p class="location-line">
+            <i class="fa-solid fa-location-dot"></i>
+            Carrer de Ferran Puig, 16, local — 08820 El Prat de Llobregat, Barcelona
+          </p>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Carrer+de+Ferran+Puig+16%2C+08820+El+Prat+de+Llobregat%2C+Barcelona" target="_blank" rel="noopener" class="btn-directions">
+            <i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-quote" data-aos="fade-up">"Buon appetito"</p>
+    <img src="logo.png" alt="La Nonna" class="footer-logo" />
+
+    <div class="footer-info">
+      <div class="footer-info-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Carrer de Ferran Puig, 16 · El Prat</span>
+      </div>
+      <div class="footer-info-item">
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:931450308">931 450 308</a>
+      </div>
+      <div class="footer-info-item">
+        <i class="fa-solid fa-clock"></i>
+        <span>Mar–Dom · 19:30 – 23:00</span>
+      </div>
+    </div>
+
+    <div class="socials">
+      <!-- REEMPLAZAR CON LINKS REALES -->
+      <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" target="_blank" rel="noopener" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor"></i></a>
+    </div>
+
+    <div class="footer-tricolor" aria-hidden="true">
+      <span class="g"></span>
+      <span class="w"></span>
+      <span class="r"></span>
+    </div>
+
+    <p class="copy">&copy; 2025 La Nonna Pizzeria italiana · El Prat de Llobregat</p>
+  </div>
+</footer>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+/* ---------- AOS ---------- */
+AOS.init({
+  duration: 900,
+  easing: 'ease-out-cubic',
+  once: true,
+  offset: 60
+});
+
+/* ---------- NAVBAR ---------- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
+
+function openMobileMenu(){
+  navLinks.classList.add('open');
+  navOverlay.classList.add('show');
+  document.body.classList.add('menu-open');
+  const icon = navToggle.querySelector('i');
+  icon.classList.remove('fa-bars');
+  icon.classList.add('fa-xmark');
+}
+function closeMobileMenu(){
+  navLinks.classList.remove('open');
+  navOverlay.classList.remove('show');
+  document.body.classList.remove('menu-open');
+  const icon = navToggle.querySelector('i');
+  icon.classList.remove('fa-xmark');
+  icon.classList.add('fa-bars');
+}
+
+navToggle.addEventListener('click', () => {
+  if (navLinks.classList.contains('open')) closeMobileMenu();
+  else openMobileMenu();
+});
+navOverlay.addEventListener('click', closeMobileMenu);
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', closeMobileMenu);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) closeMobileMenu();
+});
+
+/* ---------- SCROLLSPY ---------- */
+const navAnchors = document.querySelectorAll('.nav-links a');
+const sectionIds = ['menu','gallery','reviews','order','hours'];
+const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navAnchors.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+sections.forEach(s => spy.observe(s));
+
+/* ---------- MENU DATA ---------- */
+const menu = {
+  pizzas: [
+    ['4 Quesos', 12.50],
+    ['5 Stagioni', 13.50],
+    ['5 Quesos', 13.50],
+    ['Adriano Celetano', 12.50],
+    ['Baggio', 12.50],
+    ['Batiato', 13.50],
+    ['Berlusconi', 12.50],
+    ['Bud Spencer', 13.50],
+    ['Calabriella', 14.50],
+    ['Caravaggio', 13.50],
+    ['Carbonara', 14.50],
+    ['Corleone', 13.50],
+    ['Da Vinci', 11.50],
+    ['Dante', 13.50],
+    ['De Sica', 12.50],
+    ['Don Giovanni', 13.50],
+    ['Er Cipolla', 12.50],
+    ['Fellini', 13.50],
+    ['Gasman', 12.50],
+    ['Giulio Cesar', 13.50],
+    ['Honolulu', 13.50],
+    ['Italia', 13.50],
+    ['La Nonna', 12.50],
+    ['La Primavera', 13.50],
+    ['Lara Pasini', 11.50],
+    ['Madonna', 13.50],
+    ['Margherita', 10.50],
+    ['Montalbano', 11.50],
+    ['Pasolini', 11.50],
+    ['Pavarotti', 13.50],
+    ['Raffaella Carrá', 12.50],
+    ['Roberto Benigni', 13.50],
+    ['Rocco', 12.50],
+    ['Terence Hill', 13.50],
+    ['Versace', 13.50]
+  ],
+  calzone: [
+    ['Pizza Calzone Albano', 12.50],
+    ['Pizza Calzone Casanova', 13.50],
+    ['Pizza Calzone Enzo Ferrari', 13.50],
+    ['Pizza Calzone Franco Nero', 13.50],
+    ['Pizza Calzone La Gioconda', 13.50],
+    ['Pizza Calzone Nino Benvenuti', 13.50],
+    ['Pizza Calzone Romina', 13.50],
+    ['Pizza Calzone Barden', 13.50],
+    ['Pizza Calzone Il Padrino', 13.50],
+    ['Pizza Calzone Cosa Nostra', 13.50]
+  ],
+  entrantes: [
+    ['Caprese', 10.00],
+    ['Burratina', 10.00]
+  ],
+  especialidades: [
+    ['Tiramisú casero', 5.00],
+    ['Cannoló siciliano', 3.50],
+    ['Pizza Mammaccio', 8.00],
+    ['Pizza Nutellina', 8.00]
+  ]
+};
+
+const titles = {
+  pizzas: 'Pizzas · 33 cm',
+  calzone: 'Calzone',
+  entrantes: 'Entrantes',
+  especialidades: 'Especialidades'
+};
+
+const menuGrid = document.getElementById('menuGrid');
+
+function renderMenu(cat) {
+  menuGrid.innerHTML = '';
+  const cats = cat === 'all' ? ['pizzas','calzone','entrantes','especialidades'] : [cat];
+  cats.forEach(c => {
+    const h = document.createElement('h3');
+    h.className = 'menu-section-title';
+    h.textContent = titles[c];
+    menuGrid.appendChild(h);
+    menu[c].forEach(([name, price]) => {
+      const item = document.createElement('div');
+      item.className = 'menu-item';
+      item.innerHTML = `
+        <span class="menu-name">${name}</span>
+        <span class="menu-price">${price.toFixed(2).replace('.', ',')}€</span>
+      `;
+      menuGrid.appendChild(item);
+    });
+  });
+}
+renderMenu('all');
+
+document.querySelectorAll('.filter-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    renderMenu(b.dataset.cat);
+  });
+});
+
+/* ---------- LIGHTBOX ---------- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+let currentIdx = 0;
+
+function openLightbox(idx){
+  currentIdx = idx;
+  lightboxImg.src = galleryItems[idx].dataset.img;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function nav(dir){
+  currentIdx = (currentIdx + dir + galleryItems.length) % galleryItems.length;
+  lightboxImg.src = galleryItems[currentIdx].dataset.img;
+}
+
+galleryItems.forEach((it, i) => {
+  it.addEventListener('click', () => openLightbox(i));
+});
+document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+document.querySelector('.lightbox-prev').addEventListener('click', () => nav(-1));
+document.querySelector('.lightbox-next').addEventListener('click', () => nav(1));
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') nav(-1);
+  if (e.key === 'ArrowRight') nav(1);
+});
+
+/* ---------- Open status & today highlight ---------- */
+const schedule = {
+  0: [[12*60, 15*60+30], [19*60+30, 23*60]],
+  1: null,
+  2: [[19*60+30, 23*60]],
+  3: [[19*60+30, 23*60]],
+  4: [[19*60+30, 23*60]],
+  5: [[12*60, 15*60+30], [19*60+30, 23*60]],
+  6: [[12*60, 15*60+30], [19*60+30, 23*60]]
+};
+const dayNames = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+
+function fmtTime(mins){
+  const h = Math.floor(mins/60);
+  const m = mins % 60;
+  return `${h}:${m.toString().padStart(2,'0')}`;
+}
+
+function getNextOpening(now){
+  const today = now.getDay();
+  const nowMins = now.getHours()*60 + now.getMinutes();
+
+  const todayRanges = schedule[today];
+  if (todayRanges) {
+    for (const [start] of todayRanges) {
+      if (nowMins < start) return { label: 'hoy', time: fmtTime(start) };
+    }
+  }
+  for (let i = 1; i <= 7; i++) {
+    const dayIdx = (today + i) % 7;
+    const ranges = schedule[dayIdx];
+    if (ranges) {
+      const label = i === 1 ? 'mañana' : dayNames[dayIdx];
+      return { label, time: fmtTime(ranges[0][0]) };
+    }
+  }
+  return null;
+}
+
+function updateOpenStatus(){
+  const now = new Date();
+  const day = now.getDay();
+  const minutes = now.getHours()*60 + now.getMinutes();
+  const ranges = schedule[day];
+  let isOpen = false;
+  if (ranges) isOpen = ranges.some(([s, e]) => minutes >= s && minutes < e);
+
+  document.querySelectorAll('#hoursTable tr').forEach(tr => tr.classList.remove('today'));
+  const todayRow = document.querySelector(`#hoursTable tr[data-day="${day}"]`);
+  if (todayRow) {
+    todayRow.classList.add('today');
+    const oldBadge = todayRow.querySelector('.open-status');
+    if (oldBadge) oldBadge.remove();
+    const badge = document.createElement('span');
+    badge.className = 'open-status ' + (isOpen ? 'open' : 'closed');
+
+    if (isOpen) {
+      badge.innerHTML = `<span class="dot"></span>Abierto ahora`;
+    } else {
+      const next = getNextOpening(now);
+      const opensTxt = next ? ` · Abre ${next.label} ${next.time}` : '';
+      badge.innerHTML = `<span class="dot"></span>Cerrado${opensTxt}`;
+    }
+    todayRow.querySelector('td:first-child').appendChild(badge);
+  }
+}
+updateOpenStatus();
+setInterval(updateOpenStatus, 60*1000);
+</script>
+</body>
+</html>
